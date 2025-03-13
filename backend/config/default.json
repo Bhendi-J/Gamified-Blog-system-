@@ -1,0 +1,4 @@
+{
+    "mongoURI" : "mongodb+srv://user1:<db_password>@cluster0.gkw2o.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0" ,
+    "jwtSecret" : "b17f2c68e1b24f6d8ef70f1b17c2e7f9a1d8f2c3b7e6f8d2c4a5e9b7c8d1a3f6"
+  }
