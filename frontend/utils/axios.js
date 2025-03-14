@@ -1,8 +1,9 @@
 import axios from 'axios';
+import { getToken } from './tokenManager';
 
 // Create base axios instance
 const api = axios.create({
-  baseURL: process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000/api',
+  baseURL: process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000/api',
   headers: {
     'Content-Type': 'application/json'
   }
@@ -13,7 +14,7 @@ api.interceptors.request.use(
   (config) => {
     // For browser environment only
     if (typeof window !== 'undefined') {
-      const token = localStorage.getItem('token');
+      const token = getToken();
       if (token) {
         config.headers['x-auth-token'] = token;
       }
@@ -32,9 +33,12 @@ api.interceptors.response.use(
     // Handle unauthorized errors (token expired, etc.)
     if (error.response && error.response.status === 401) {
       if (typeof window !== 'undefined') {
+        // Clear auth tokens
+        document.cookie = 'token=; path=/; expires=Thu, 01 Jan 1970 00:00:01 GMT;';
         localStorage.removeItem('token');
-        // You can add redirection to login page here if needed
-        // window.location.href = '/login';
+        
+        // Redirect to login page
+        window.location.href = '/login';
       }
     }
     return Promise.reject(error);
