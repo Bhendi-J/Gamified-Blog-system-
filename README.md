@@ -1,8 +1,3 @@
-
----
-
-# ✅ 2️⃣ Gamified Blog System
-
 # Gamified Blog System
 
 A full-stack blogging platform integrating gamification mechanics to increase user engagement through rewards, progression systems, and interactive challenges.
